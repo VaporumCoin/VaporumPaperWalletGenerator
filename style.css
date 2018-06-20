@@ -82,7 +82,8 @@ select {
 .randombar_finished {
     font-size: 77px;
     font-weight: 900;
-    color:#FFF!important;
+    color:#FAA900 !important;
+    text-shadow: -1px -1px 0 #333A42, 1px -1px 0 #333A42, -1px 1px 0 #333A42, 1px 1px 0 #333A42
 }
 
 #newaddresshero {
@@ -93,7 +94,7 @@ select {
     display:none;
 }
 
-#generateseed {
+#generatingseed {
     position: relative;
     top: 140px;
     color:#FFF;
@@ -106,12 +107,12 @@ select {
     transition-delay: 0s, 0s;
 }
 
-#generateseed .progress svg {
+#generatingseed .progress svg {
     display: block;
     height: 275px;
 }
 
-#generateseed #random-text {
+#generatingseed #random-text {
     margin-top:10px;
 }
 
@@ -173,12 +174,22 @@ hr { margin: 20px 0;  }
     padding:20px;
     position:relative;
     width:100%;
-    width:calc(100% - 20px);
+    width:calc(100% - 40px);
 }
+
+.keyarea2 {
+    width:560px;
+    padding:20px;
+    margin:0 auto 20px;
+    color:#000;
+    background-color:#D3D4D8;
+}
+
 .keyarea .qrcode {
     height:164px;
     width:164px;
 }
+
 .keyarea .qrcode canvas {
     height:164px!important;
     width:164px!important;
@@ -189,7 +200,7 @@ hr { margin: 20px 0;  }
     top: 65px;
     left: 200px;
     text-align:left;
-    width: 400px;
+    width: 380px;
     word-break:break-all;
 }
 
@@ -393,7 +404,7 @@ h1 { margin: 0px; height: 91px; }
 #suppliedPrivateKey { width: 420px; }
 #papergenerate { margin-left: 10px; margin-right: 0px;}
 
-.displayNone { displa: none; }
+.displayNone { display: none; }
 .redColor { color: red; }
 .1percentwidth { width: 1%; }
 .100pxwidth { width: 100px; }
@@ -402,11 +413,19 @@ h1 { margin: 0px; height: 91px; }
 .paperWalletText ul { margin: 0px; padding: 0px; }
 .paperWalletText li { line-height: 13px; margin-bottom: 5px; }
 
-.qrzone { margin: 20px 0px 20px 20px; }
+.qrzone { margin: 20px 0px; }
 #detaillabelenterprivatekey { margin-right: 15px; }
 
-.qrcodeinputwrapper { position: relative; margin-right: 15px; }
+.qrcodeinputwrapper { position: relative; }
 .qrcodeinputwrapper img { position: absolute; display: block; top: 3px; right: 20px; width: 16px; height: 16px;background: url("./images/qrcode.png"); cursor: pointer; padding: 0; }
+.qrinput .button { 
+    position:relative;
+    top:5px;
+    font-size:30px;
+    line-height:1em;
+    padding:2px 10px 5px;
+    background-color:#FFF;
+}
 
 #bulkarea .body { padding: 5px 0 0 0; }
 #bulkarea .format { font-style: italic; font-size: 90%; }
@@ -417,7 +436,9 @@ h1 { margin: 0px; height: 91px; }
     width: 600px; 
 }
 #detailkeyarea { padding: 10px; }
+#detailkeydetails { display:none; }
 #detailarea { margin: 0; text-align: left; }
+#detailarea-inner { width: 80%; margin: 0 auto; }
 #detailarea .notes { text-align: left; font-size: 80%; padding: 0 0 20px 0; }
 #detailarea .pubqr .item .label { text-decoration: none; }
 #detailarea .pubqr .item { float: left; margin: 10px 0; position: relative; }
@@ -428,12 +449,12 @@ h1 { margin: 0px; height: 91px; }
 #detailarea .item { margin: 10px 0; position: relative; font-size: 90%; padding: 1px 0; }
 #detailarea .item.clear { clear: both; padding-top: 10px; }
 #detailarea .label { display: block; font-weight: bold; }
-#detailarea .output { display: block; font-family: monospace; font-size: 1.25em; }
-#detailarea #detailqrcodepublic { position: relative; float: left; margin: 0 10px 0 0; padding: 13px 11px 11px 11px; }
-#detailarea #detailqrcodepubliccomp { position: relative; float: right; margin: 0 0 0 10px; padding: 13px 11px 11px 11px; }
-#detailarea #detailqrcodeprivate { position: relative; float: left; margin: 0 10px 0 0; padding: 13px 11px 11px 11px; }
-#detailarea #detailqrcodeprivatecomp { position: relative; float: right; margin: 0 0 0 10px; padding: 13px 11px 11px 11px; }
-#detailpubkey { width: 590px; }
+#detailarea .output { display: block; font-family: monospace; font-size: 1.25em; word-wrap: break-word;}
+/* #detailarea #detailqrcodepublic { position: relative; float: left; margin: 0 10px 0 0; padding: 13px 11px 11px 11px; } */
+/* #detailarea #detailqrcodepubliccomp { position: relative; float: right; margin: 0 0 0 10px; padding: 13px 11px 11px 11px; } */
+/* #detailarea #detailqrcodeprivate { position: relative; float: left; margin: 0 10px 0 0; padding: 13px 11px 11px 11px; } */
+/* #detailarea #detailqrcodeprivatecomp { position: relative; float: right; margin: 0 0 0 10px; padding: 13px 11px 11px 11px; } */
+/* #detailpubkey { width: 590px; } */
 #detailbip38commands { display: none; padding-top: 5px; }
 #paperqrscanner { position: absolute; display: none; width: 100%; height: 100%; top: 0; left: 0; z-index: 5000; vertical-aligh: middle; }
 #paperqrscanner.show { display: block; }

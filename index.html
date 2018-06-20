@@ -9339,11 +9339,12 @@ function QRCodeScanner(width, height, container, success, error) {
 				<input type="button" class="button" id="newaddresshero1" value="Generate Another Wallet" onclick="ninja.wallets.singlewallet.generateNewAddressAndKey();" /></span>
 			</div>
 
-			<div id="generateseed">
+			<div id="generatingseed">
 				<div class="progress" id="random-bar">
 					<div id="random-innertext"></div>
 				</div>
 				<div id="random-text">Move your mouse to generate a random seed</div>
+				<!-- <a href="#" onclick="ninja.seeder.seedCount = ninja.seeder.seedLimit; ninja.seeder.seed();">Skip</a> -->
 			</div>
 		</div>
 
@@ -9360,126 +9361,6 @@ function QRCodeScanner(width, height, container, success, error) {
 			<!-- <div class="tab i18n" id="brainwallet" onclick="ninja.tabSwitch(this);">Brain Wallet</div> -->
 		</div>
     	<div id="wallets">
-			<div id="getbip39keysarea" class="walletarea">
-				<div class="getbip39keysarea-inner">
-					<span class="label i18n toUpperCase">Provide your Ledger or any other bip39 compatible seed to retrieve KMD private keys</span>
-					<span class="label small i18n toItalics">Note: key search is a resource intensive operation. Please use small increments when choosing selector options. Otherwise it may result in browser hang for a long period of time.</span>
-					<hr>
-					<input type="password" id="getbip39keysarea-seed" class="getbip39keysarea-seed" value="" placeholder="Enter your seed here" autocomplete="off" onfocus="this.select();">
-					<input type="text" id="getbip39keysarea-search" class="getbip39keysarea-seed" value="" placeholder="Enter a KMD address to search for" autocomplete="off" onfocus="this.select();">
-					<div class="getprivkeysarea-selectors">
-						<span class="default-text toUpperCase toBold">Number of accounts</span>
-						<select id="getprivkeysarea-select-accounts-count" class="getprivkeysarea-select" value="2">
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-						</select>
-					</div>
-					<div class="getprivkeysarea-selectors">
-						<span class="default-text toUpperCase toBold">Number of addresses</span>
-						<select id="getprivkeysarea-select-addresses-count" class="getprivkeysarea-select" value="2">
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-						</select>
-					</div>
-					<div class="getprivkeysarea-selectors">
-						<span class="default-text toUpperCase toBold">Number of accounts offset</span>
-						<select id="getprivkeysarea-select-accounts-count-offset" class="getprivkeysarea-select" value="0">
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-						</select>
-					</div>
-					<div class="getprivkeysarea-selectors">
-						<span class="default-text toUpperCase toBold">Number of addresses offset</span>
-						<select id="getprivkeysarea-select-addresses-count-offset" class="getprivkeysarea-select" value="0">
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-						</select>
-					</div>
-					<input type="button" class="button" id="bip39privkeybutton" value="Get Private Keys" onclick="ninja.wallets.getbip39keys.get();">
-					<div id="getbip39keysarea-inner-res" class="getbip39keysarea-inner-res">
-						<hr />
-						<div id="getbip39keysarea-inner-res-msg" class="getbip39keysarea-inner-res-msg"></div>
-					</div>
-				</div>
-			</div>
-
-			<div id="getprivkeysarea" class="walletarea">
-				<div class="getprivkeysarea-inner">
-					<span class="label i18n toUpperCase">Provide your Agama/BarterDEX seed to retrieve private keys</span>
-					<hr>
-					<input type="password" id="getprivkeysarea-seed" class="getprivkeysarea-seed" value="" placeholder="Enter your seed here" autocomplete="off" onfocus="this.select();">
-					<span class="default-text toUpperCase toBold">Coin</span> <select id="getprivkeysarea-select" class="getprivkeysarea-select"></select>
-					<input type="button" class="button" id="encryptedseeddecrypt" value="Get Private Keys" onclick="ninja.wallets.getprivkeys.get();">
-					<div id="getprivkeysarea-inner-res" class="getprivkeysarea-inner-res">
-						<hr />
-						<div id="getprivkeysarea-inner-res-msg" class="getprivkeysarea-inner-res-msg"></div>
-					</div>
-				</div>
-			</div>
-
-			<div id="decryptseedarea" class="walletarea">
-				<div class="decryptseedarea-inner">
-					<span class="label i18n toUpperCase">Insert contents of .pin file below</span>
-					<hr>
-					<textarea rows="20" cols="120" id="encryptedseed"></textarea>
-					<input type="password" id="encryptedseedkey" value="" placeholder="Enter decryption key here" autocomplete="off" onfocus="this.select();">
-					<input type="button" class="button" id="encryptedseeddecrypt" value="Decrypt" onclick="ninja.wallets.decryptseed.decode();">
-					<div id="decryptseedarea-inner-res" class="decryptseedarea-inner-res">
-						<hr />
-						<div id="decryptseedarea-inner-res-msg" class="decryptseedarea-inner-res-msg"></div>
-					</div>
-				</div>
-			</div>
-
-			<div id="generateseedarea" class="walletarea">
-				<div class="generateseedarea-inner">
-					<span class="label i18n toUpperCase">Select seed type</span>
-					<hr>
-					<div class="generateseedarea-seed-type">
-						<label for="seedtype1"><input type="radio" id="seedtype1" name="seedtype" value="seedtype1" onClick="ninja.wallets.generateseed.generate(256)"> Agama/BarterDEX (256-bit)</label>
-						<br>
-						<label for="seedtype2"><input type="radio" id="seedtype2" name="seedtype" value="seedtype2" onClick="ninja.wallets.generateseed.generate(160)"> Waves (160-bit)</label>
-						<br>
-						<label for="seedtype3"><input type="radio" id="seedtype3" name="seedtype" value="seedtype3" onClick="ninja.wallets.generateseed.generate(128)"> NXT (128-bit)</label>
-					</div>
-					<hr>
-					<span class="label i18n label-padding">This is your new seed. Please keep it extra secure and don't use any smart editors to store it.</span>
-					<div class="generateseedarea-seed" id="generateseedarea-seed"></div>
-				</div>
-			</div>
-
 			<div id="singlearea" class="walletarea">
 				<!-- <div id="initBanner">
 					<span id="generatelabelbitcoinaddress" class="i18n">Generating new Address...</span><br />
@@ -9634,7 +9515,240 @@ function QRCodeScanner(width, height, container, success, error) {
 						Donation are always welcome, but you can also help us translate the website. It's really easy. Just add "?i18nextract=LANGUAGECODE" in the end of the url (for instance http://walletgenerator.net/?i18nextract=es for Spanish). You will see at the end of the page a pre-filled javascript array ready to be translated. Translate or correct it, and send it to us the way you prefer. Even partial translation are helpful !
 					</p>
 				</div>
-      		</div>
+			</div>
+
+			<div id="detailarea" class="walletarea">
+				<div id="detailarea-inner">
+					<div id="detailcommands" class="commands">
+						<div class="row extra qrzone">
+							<span class="qrinput">
+								<span class="qrcodeinputwrapper">
+									<input type="text" id="detailprivkey" value="" placeholder="Enter private key" autocomplete="off" onFocus="this.select();" onKeyPress="if (event.keyCode == 13) ninja.wallets.detailwallet.viewDetails();" />
+									<input type="button" class="button" id="detailview" value="+" onclick="ninja.wallets.detailwallet.viewDetails();" />
+									<!--<img onClick="ninja.wallets.detailwallet.qrscanner.start()" />  -->
+								</span>
+							</span>
+							<!-- <span class="print">
+								<input type="button" name="print" id="detailprint" value="Print" onclick="window.print();" />
+							</span> -->
+						</div>
+						<hr>
+
+						<div id="paperqrscanner">
+							<div class="background"></div>
+							<div id="mainbody" class="dialog instructionsarea">
+								<h2 id="qrcaminstructiontitle" class="i18n">Scan QR code using your camera</h2>
+								<div id="paperqrnotsupported" class="hide redColor i18n">Sorry, but your web browser does not support the HTML5 camera controls. Try using a recent version of Firefox (recommended), Chrome or Opera.</div>
+								<div id="paperqrpermissiondenied" class="hide redColor i18n">
+									<p>Permission denied. Your browser should display a message requesting access to your camera. Please click the "Allow" button to enable the camera.</p>
+								</div>
+								<div id="paperqrerror" class="redColor"></div>
+								<div id="paperqroutput"></div>
+								<button onClick="ninja.wallets.detailwallet.qrscanner.stop()">Cancel</button>
+							</div>
+						</div>
+						<div id="detailbip38commands">
+							<span><label id="detaillabelpassphrase" class="i18n">Enter BIP38 Passphrase</label> <input type="text" id="detailprivkeypassphrase" value="" onfocus="this.select();" onkeypress="if (event.keyCode == 13) ninja.wallets.detailwallet.viewDetails();" /></span>
+							<span><input type="button" id="detaildecrypt" value="Decrypt BIP38" onclick="ninja.wallets.detailwallet.viewDetails();" /></span>
+						</div>
+					</div>
+					<div id="detailkeyarea">
+						<div class="notes">
+							<span id="detaillabelnote1" class="i18n">Your Private Key is a unique secret number that only you know. It can be encoded in a number of different formats. Below we show the Public Address and Public Key that corresponds to your Private Key as well as your Private Key in the most popular encoding formats (WIF, WIFC, HEX, B64).</span>
+							<br /><br />
+						</div>
+						<div id="detailkeydetails">
+							<div class="pubqr keyarea">
+								<!-- <div class="item">
+								<span class="label i18n" id="detaillabelbitcoinaddress">Public Address</span>
+								<div id="detailqrcodepublic" class="qrcode_public"></div>
+								<span class="output" id="detailaddress"></span>
+								</div> -->
+								<div class="public">
+									<div id="detailqrcodepubliccomp" class="qrcode_public qrcode"></div>
+									<div class="pubaddress qrdetails">
+										<span class="label i18n" id="detaillabelbitcoinaddresscomp">PUBLIC ADDRESS COMPRESSED</span>
+										<br>
+										<span class="output" id="detailaddresscomp"></span>
+									</div>
+								</div>
+							</div>
+							<div class="keyarea2">
+								<span class="label i18n" id="detaillabelpublickey">PUBLIC KEY (130 characters [0-9A-F]):</span>
+								<span class="output pubkeyhex" id="detailpubkey"></span>
+							</div>
+							<div class="keyarea2">
+								<span class="label i18n" id="detaillabelpublickeycomp">PUBLIC KEY (compressed, 66 characters [0-9A-F]):</span>
+								<span class="output" id="detailpubkeycomp"></span>
+							</div>
+							<hr />
+							<div class="privqr keyarea">
+								<!-- <div class="item">
+								<span class="label"><span id="detaillabelprivwif" class="i18n">Private Key WIF<br />51 characters Base58</span></span>
+								<div id="detailqrcodeprivate" class="qrcode_private"></div>
+								<span class="output" id="detailprivwif"></span>
+								</div> -->
+								<div class="private">
+									<div id="detailqrcodeprivatecomp" class="qrcode_private qrcode"></div>
+									<div class="privwif qrdetails">
+										<span class="label"><span id="detaillabelprivwifcomp" class="i18n">PRIVATE KEY COMPRESSED<br />52 characters Base58</span></span>
+										<span class="output" id="detailprivwifcomp"></span>
+									</div>
+								</div>
+							</div>
+							<div class="keyarea2">
+								<span class="label i18n" id="detaillabelprivhex">PRIVATE KEY HEXADECIMAL FORMAT (64 characters [0-9A-F]):</span>
+								<span class="output" id="detailprivhex"></span>
+							</div>
+							<div class="keyarea2">
+								<span class="label i18n" id="detaillabelprivb64">PRIVATE KEY BASE64 (44 characters):</span>
+								<span class="output" id="detailprivb64"></span>
+							</div>
+							<div class="item displayNone" id="detailmini">
+								<span class="label i18n" id="detaillabelprivmini">Private Key Mini Format (22, 26 or 30 characters):</span>
+								<span class="output" id="detailprivmini"></span>
+							</div>
+							<div class="item displayNone" id="detailb6">
+								<span class="label i18n" id="detaillabelprivb6">Private Key Base6 Format (99 characters [0-5]):</span>
+								<span class="output" id="detailprivb6"></span>
+							</div>
+							<div class="item displayNone" id="detailbip38">
+								<span class="label i18n" id="detaillabelprivbip38">Private Key BIP38 Format (58 characters Base58):</span>
+								<span class="output" id="detailprivbip38"></span>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="faqs">
+						<div id="detailfaq1" class="faq">
+							<div id="detailq1" class="question" onclick="ninja.wallets.detailwallet.openCloseFaq(1);">
+							<span id="detaillabelq1" class="i18n">How do I make a wallet using dice? What is B6?</span>
+							<div id="detaile1" class="more"></div>
+							</div>
+							<div id="detaila1" class="answer i18n">An important part of creating a crypto-currency wallet is ensuring the random numbers used to create the wallet are truly random. Physical randomness is better than computer generated pseudo-randomness. The easiest way to generate physical randomness is with dice. To create a crypto-currency private key you only need one six sided die which you roll 99 times. Stopping each time to record the value of the die. When recording the values follow these rules: 1=1, 2=2, 3=3, 4=4, 5=5, 6=0. By doing this you are recording the big random number, your private key, in B6 or base 6 format. You can then enter the 99 character base 6 private key into the text field above and click View Details. You will then see the public address associated with your private key. You should also make note of your private key in WIF format since it is more widely used.</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+
+			<div id="decryptseedarea" class="walletarea">
+				<div class="decryptseedarea-inner">
+					<span class="label i18n toUpperCase">Insert contents of .pin file below</span>
+					<hr>
+					<textarea rows="20" cols="120" id="encryptedseed"></textarea>
+					<input type="password" id="encryptedseedkey" value="" placeholder="Enter decryption key here" autocomplete="off" onfocus="this.select();">
+					<input type="button" class="button" id="encryptedseeddecrypt" value="Decrypt" onclick="ninja.wallets.decryptseed.decode();">
+					<div id="decryptseedarea-inner-res" class="decryptseedarea-inner-res">
+						<hr />
+						<div id="decryptseedarea-inner-res-msg" class="decryptseedarea-inner-res-msg"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="generateseedarea" class="walletarea">
+				<div class="generateseedarea-inner">
+					<span class="label i18n toUpperCase">Select seed type</span>
+					<hr>
+					<div class="generateseedarea-seed-type">
+						<label for="seedtype1"><input type="radio" id="seedtype1" name="seedtype" value="seedtype1" onClick="ninja.wallets.generateseed.generate(256)"> Agama/BarterDEX (256-bit)</label>
+						<br>
+						<label for="seedtype2"><input type="radio" id="seedtype2" name="seedtype" value="seedtype2" onClick="ninja.wallets.generateseed.generate(160)"> Waves (160-bit)</label>
+						<br>
+						<label for="seedtype3"><input type="radio" id="seedtype3" name="seedtype" value="seedtype3" onClick="ninja.wallets.generateseed.generate(128)"> NXT (128-bit)</label>
+					</div>
+					<hr>
+					<span class="label i18n label-padding">This is your new seed. Please keep it extra secure and don't use any smart editors to store it.</span>
+					<div class="generateseedarea-seed" id="generateseedarea-seed"></div>
+				</div>
+			</div>
+
+			<div id="getprivkeysarea" class="walletarea">
+				<div class="getprivkeysarea-inner">
+					<span class="label i18n toUpperCase">Provide your Agama/BarterDEX seed to retrieve private keys</span>
+					<hr>
+					<input type="password" id="getprivkeysarea-seed" class="getprivkeysarea-seed" value="" placeholder="Enter your seed here" autocomplete="off" onfocus="this.select();">
+					<span class="default-text toUpperCase toBold">Coin</span> <select id="getprivkeysarea-select" class="getprivkeysarea-select"></select>
+					<input type="button" class="button" id="encryptedseeddecrypt" value="Get Private Keys" onclick="ninja.wallets.getprivkeys.get();">
+					<div id="getprivkeysarea-inner-res" class="getprivkeysarea-inner-res">
+						<hr />
+						<div id="getprivkeysarea-inner-res-msg" class="getprivkeysarea-inner-res-msg"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="getbip39keysarea" class="walletarea">
+				<div class="getbip39keysarea-inner">
+					<span class="label i18n toUpperCase">Provide your Ledger or any other bip39 compatible seed to retrieve KMD private keys</span>
+					<span class="label small i18n toItalics">Note: key search is a resource intensive operation. Please use small increments when choosing selector options. Otherwise it may result in browser hang for a long period of time.</span>
+					<hr>
+					<input type="password" id="getbip39keysarea-seed" class="getbip39keysarea-seed" value="" placeholder="Enter your seed here" autocomplete="off" onfocus="this.select();">
+					<input type="text" id="getbip39keysarea-search" class="getbip39keysarea-seed" value="" placeholder="Enter a KMD address to search for" autocomplete="off" onfocus="this.select();">
+					<div class="getprivkeysarea-selectors">
+						<span class="default-text toUpperCase toBold">Number of accounts</span>
+						<select id="getprivkeysarea-select-accounts-count" class="getprivkeysarea-select" value="2">
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+					<div class="getprivkeysarea-selectors">
+						<span class="default-text toUpperCase toBold">Number of addresses</span>
+						<select id="getprivkeysarea-select-addresses-count" class="getprivkeysarea-select" value="2">
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+					<div class="getprivkeysarea-selectors">
+						<span class="default-text toUpperCase toBold">Number of accounts offset</span>
+						<select id="getprivkeysarea-select-accounts-count-offset" class="getprivkeysarea-select" value="0">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+					<div class="getprivkeysarea-selectors">
+						<span class="default-text toUpperCase toBold">Number of addresses offset</span>
+						<select id="getprivkeysarea-select-addresses-count-offset" class="getprivkeysarea-select" value="0">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+					<input type="button" class="button" id="bip39privkeybutton" value="Get Private Keys" onclick="ninja.wallets.getbip39keys.get();">
+					<div id="getbip39keysarea-inner-res" class="getbip39keysarea-inner-res">
+						<hr />
+						<div id="getbip39keysarea-inner-res-msg" class="getbip39keysarea-inner-res-msg"></div>
+					</div>
+				</div>
+			</div>
 
 			<div id="paperarea">
 				<div class="commands">
@@ -9706,115 +9820,6 @@ function QRCodeScanner(width, height, container, success, error) {
 				</div>
 				</div>
 			</div>
-
-			<div id="detailarea" class="walletarea">
-				<div id="detailcommands" class="commands">
-
-				<div class="row extra qrzone">
-					<span class="qrinput">
-
-						<span class="qrcodeinputwrapper">
-							<input type="text" id="detailprivkey" value="" placeholder="Enter private key" autocomplete="off" onFocus="this.select();" onKeyPress="if (event.keyCode == 13) ninja.wallets.detailwallet.viewDetails();" />
-							<!--<img onClick="ninja.wallets.detailwallet.qrscanner.start()" />  -->
-						</span>
-
-						<input type="button" class="button" id="detailview" value="+" onclick="ninja.wallets.detailwallet.viewDetails();" />
-					</span>
-					<!-- <span class="print">
-						<input type="button" name="print" id="detailprint" value="Print" onclick="window.print();" />
-					</span> -->
-				</div>
-				<hr>
-
-				<div id="paperqrscanner">
-					<div class="background"></div>
-					<div id="mainbody" class="dialog instructionsarea">
-					<h2 id="qrcaminstructiontitle" class="i18n">Scan QR code using your camera</h2>
-					<div id="paperqrnotsupported" class="hide redColor i18n">Sorry, but your web browser does not support the HTML5 camera controls. Try using a recent version of Firefox (recommended), Chrome or Opera.</div>
-					<div id="paperqrpermissiondenied" class="hide redColor i18n">
-						<p>Permission denied. Your browser should display a message requesting access to your camera. Please click the "Allow" button to enable the camera.</p>
-					</div>
-					<div id="paperqrerror" class="redColor"></div>
-					<div id="paperqroutput"></div>
-					<button onClick="ninja.wallets.detailwallet.qrscanner.stop()">Cancel</button>
-					</div>
-				</div>
-				<div id="detailbip38commands">
-					<span><label id="detaillabelpassphrase" class="i18n">Enter BIP38 Passphrase</label> <input type="text" id="detailprivkeypassphrase" value="" onfocus="this.select();" onkeypress="if (event.keyCode == 13) ninja.wallets.detailwallet.viewDetails();" /></span>
-					<span><input type="button" id="detaildecrypt" value="Decrypt BIP38" onclick="ninja.wallets.detailwallet.viewDetails();" /></span>
-				</div>
-				</div>
-				<div id="detailkeyarea">
-				<div class="notes">
-					<span id="detaillabelnote1" class="i18n">Your Private Key is a unique secret number that only you know. It can be encoded in a number of different formats. Below we show the Public Address and Public Key that corresponds to your Private Key as well as your Private Key in the most popular encoding formats (WIF, WIFC, HEX, B64).</span>
-					<br /><br />
-				</div>
-				<div class="pubqr">
-					<div class="item">
-					<span class="label i18n" id="detaillabelbitcoinaddress">Public Address</span>
-					<div id="detailqrcodepublic" class="qrcode_public"></div>
-					<span class="output" id="detailaddress"></span>
-					</div>
-					<div class="item right">
-					<span class="label i18n" id="detaillabelbitcoinaddresscomp">Public Address Compressed</span>
-					<div id="detailqrcodepubliccomp" class="qrcode_public"></div>
-					<span class="output" id="detailaddresscomp"></span>
-					</div>
-				</div>
-				<br /><br />
-				<div class="item clear">
-					<span class="label i18n" id="detaillabelpublickey">Public Key (130 characters [0-9A-F]):</span>
-					<span class="output pubkeyhex" id="detailpubkey"></span>
-				</div>
-				<div class="item">
-					<span class="label i18n" id="detaillabelpublickeycomp">Public Key (compressed, 66 characters [0-9A-F]):</span>
-					<span class="output" id="detailpubkeycomp"></span>
-				</div>
-				<hr />
-				<div class="privqr">
-					<div class="item">
-					<span class="label"><span id="detaillabelprivwif" class="i18n">Private Key WIF<br />51 characters Base58</span></span>
-					<div id="detailqrcodeprivate" class="qrcode_private"></div>
-					<span class="output" id="detailprivwif"></span>
-					</div>
-					<div class="item right">
-					<span class="label"><span id="detaillabelprivwifcomp" class="i18n">Private Key WIF Compressed<br />52 characters Base58</span></span>
-					<div id="detailqrcodeprivatecomp" class="qrcode_private"></div>
-					<span class="output" id="detailprivwifcomp"></span>
-					</div>
-				</div>
-				<br /><br />
-				<div class="item clear">
-					<span class="label i18n" id="detaillabelprivhex">Private Key Hexadecimal Format (64 characters [0-9A-F]):</span>
-					<span class="output" id="detailprivhex"></span>
-				</div>
-				<div class="item">
-					<span class="label i18n" id="detaillabelprivb64">Private Key Base64 (44 characters):</span>
-					<span class="output" id="detailprivb64"></span>
-				</div>
-				<div class="item displayNone" id="detailmini">
-					<span class="label i18n" id="detaillabelprivmini">Private Key Mini Format (22, 26 or 30 characters):</span>
-					<span class="output" id="detailprivmini"></span>
-				</div>
-				<div class="item displayNone" id="detailb6">
-					<span class="label i18n" id="detaillabelprivb6">Private Key Base6 Format (99 characters [0-5]):</span>
-					<span class="output" id="detailprivb6"></span>
-				</div>
-				<div class="item displayNone" id="detailbip38">
-					<span class="label i18n" id="detaillabelprivbip38">Private Key BIP38 Format (58 characters Base58):</span>
-					<span class="output" id="detailprivbip38"></span>
-				</div>
-				</div>
-				<!-- <div class="faqs">
-					<div id="detailfaq1" class="faq">
-						<div id="detailq1" class="question" onclick="ninja.wallets.detailwallet.openCloseFaq(1);">
-						<span id="detaillabelq1" class="i18n">How do I make a wallet using dice? What is B6?</span>
-						<div id="detaile1" class="more"></div>
-						</div>
-						<div id="detaila1" class="answer i18n">An important part of creating a crypto-currency wallet is ensuring the random numbers used to create the wallet are truly random. Physical randomness is better than computer generated pseudo-randomness. The easiest way to generate physical randomness is with dice. To create a crypto-currency private key you only need one six sided die which you roll 99 times. Stopping each time to record the value of the die. When recording the values follow these rules: 1=1, 2=2, 3=3, 4=4, 5=5, 6=0. By doing this you are recording the big random number, your private key, in B6 or base 6 format. You can then enter the 99 character base 6 private key into the text field above and click View Details. You will then see the public address associated with your private key. You should also make note of your private key in WIF format since it is more widely used.</div>
-					</div>
-				</div> -->
-			</div>
 		</div>
 	</div>
   	<div id="footerbg">
@@ -9841,8 +9846,8 @@ function QRCodeScanner(width, height, container, success, error) {
 		</div>
 	</div>
 
-	<script src="./src/progressbar.min.js"></script>
-	<script src="./js/circular.js"></script>
+<script src="./src/progressbar.min.js"></script>
+<script src="./js/circular.js"></script>
 
 
 <script type="text/javascript">
@@ -10984,7 +10989,7 @@ ninja.wallets.singlewallet = {
 		document.getElementById("keyarea").style.display = "block";
 		document.getElementById("paperwalletarea").style.display = "block";
 		document.getElementById("singlearea").style.display = "block";
-		document.getElementById("faqZone").style.display = "block";
+		// document.getElementById("faqZone").style.display = "block";
 		// document.getElementById("initBanner").style.display = "none";
 		document.getElementById("singlesafety").style.display = "none";
 
@@ -11598,6 +11603,7 @@ ninja.wallets.detailwallet = {
 
 	viewDetails: function () {
 		var bip38 = false;
+		document.querySelector('#detailkeydetails').style.display = 'block';
 		var key = document.getElementById("detailprivkey").value.toString().replace(/^\s+|\s+$/g, ""); // trim white space
 		document.getElementById("detailprivkey").value = key;
 		var bip38CommandDisplay = document.getElementById("detailbip38commands").style.display;
@@ -11673,8 +11679,8 @@ ninja.wallets.detailwallet = {
 			var bitcoinAddress = btcKey.getBitcoinAddress();
 			var wif = btcKey.getBitcoinWalletImportFormat();
 			document.getElementById("detailpubkey").innerHTML = btcKey.getPubKeyHex();
-			document.getElementById("detailaddress").innerHTML = bitcoinAddress;
-			document.getElementById("detailprivwif").innerHTML = wif;
+			// document.getElementById("detailaddress").innerHTML = bitcoinAddress;
+			// document.getElementById("detailprivwif").innerHTML = wif;
 			btcKey.setCompressed(true);
 			var bitcoinAddressComp = btcKey.getBitcoinAddress();
 			var wifComp = btcKey.getBitcoinWalletImportFormat();
@@ -11683,9 +11689,9 @@ ninja.wallets.detailwallet = {
 			document.getElementById("detailprivwifcomp").innerHTML = wifComp;
 
 			ninja.qrCode.showQrCode({
-				"detailqrcodepublic": bitcoinAddress,
+				// "detailqrcodepublic": bitcoinAddress,
 				"detailqrcodepubliccomp": bitcoinAddressComp,
-				"detailqrcodeprivate": wif,
+				// "detailqrcodeprivate": wif,
 				"detailqrcodeprivatecomp": wifComp
 			}, 4);
 		}
@@ -11694,18 +11700,18 @@ ninja.wallets.detailwallet = {
 	clear: function () {
 		document.getElementById("detailpubkey").innerHTML = "";
 		document.getElementById("detailpubkeycomp").innerHTML = "";
-		document.getElementById("detailaddress").innerHTML = "";
+		// document.getElementById("detailaddress").innerHTML = "";
 		document.getElementById("detailaddresscomp").innerHTML = "";
-		document.getElementById("detailprivwif").innerHTML = "";
+		// document.getElementById("detailprivwif").innerHTML = "";
 		document.getElementById("detailprivwifcomp").innerHTML = "";
 		document.getElementById("detailprivhex").innerHTML = "";
 		document.getElementById("detailprivb64").innerHTML = "";
 		document.getElementById("detailprivb6").innerHTML = "";
 		document.getElementById("detailprivmini").innerHTML = "";
 		document.getElementById("detailprivbip38").innerHTML = "";
-		document.getElementById("detailqrcodepublic").innerHTML = "";
+		// document.getElementById("detailqrcodepublic").innerHTML = "";
 		document.getElementById("detailqrcodepubliccomp").innerHTML = "";
-		document.getElementById("detailqrcodeprivate").innerHTML = "";
+		// document.getElementById("detailqrcodeprivate").innerHTML = "";
 		document.getElementById("detailqrcodeprivatecomp").innerHTML = "";
 		document.getElementById("detailb6").style.display = "none";
 		document.getElementById("detailmini").style.display = "none";
