@@ -17,6 +17,14 @@ select {
     font-size:18px;
 }
 
+.button {
+    color:#2F6565;
+    font-size:18px;
+    background-color: #BCBCBC;
+    padding: 5px 20px 9px;
+    cursor:pointer;
+}
+
 .headerbg { width:100%; position: absolute; top:0; left:0; background-image: url('images/KMD_PaperWalletGenerator_HeaderPlain_v2.png'); background-repeat: no-repeat; background-position: top center; background-size: 2160px 524px; min-height: 524px;}
 
 .header {
@@ -35,12 +43,76 @@ select {
     margin-bottom:15px;
 }
 
-.button {
-    color:#2F6565;
-    font-size:18px;
-    background-color: #BCBCBC;
-    padding: 5px 20px 9px;
-    cursor:pointer;
+#generatetext,
+#generatedtext {
+    margin-bottom: 10px;
+}
+
+#generatedtext {
+    display:none;
+}
+
+#random-bar {
+    position:relative;
+}
+
+.randombar_text {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+
+    opacity: 1;
+    visibility: visible;
+    background-color: #618E95;
+    color: #FFF !important;
+    border: 1px solid #FFF;
+    border-radius: 50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    height: 40px;
+    width: 40px;
+    line-height: 1.6em;
+
+    transition-property: opacity, visibility;
+    transition-duration: 1.0s, 1.0s;
+    transition-delay: 0s, 0s;
+}
+
+.randombar_finished {
+    font-size: 77px;
+    font-weight: 900;
+    color:#FFF!important;
+}
+
+#newaddresshero {
+    background-color:#FFF;
+}
+
+#newaddresshero1 {
+    display:none;
+}
+
+#generateseed {
+    position: relative;
+    top: 140px;
+    color:#FFF;
+    font-size:24px;
+    display:none;
+    opacity: 1;
+    visibility: visible;
+    transition-property: opacity, visibility;
+    transition-duration: 1.0s, 1.0s;
+    transition-delay: 0s, 0s;
+}
+
+#generateseed .progress svg {
+    display: block;
+    height: 275px;
+}
+
+#generateseed #random-text {
+    margin-top:10px;
 }
 
 .more { background: url("./images/plus.png") no-repeat left center; width: 17px; height: 17px; display: inline-block; float: right; }

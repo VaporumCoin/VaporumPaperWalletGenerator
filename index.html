@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Universal Open Source Client-Side Paper Wallet Generator for BitCoins and other cryptocurrencies. Create your own paper wallet in a few easy steps : Generate, Print and Fold !">
+  <meta name="description" content="Komodo Universal Open Source Client-Side Paper Wallet Generator for BitCoins and other cryptocurrencies. Create your own paper wallet in a few easy steps : Generate, Print and Fold !">
   <meta name="keywords" content="universal, paper, wallet, generator, cryptocurrencies, bitcoin, litecoin, dogecoin" />
 
   <!--
@@ -9307,7 +9307,8 @@ function QRCodeScanner(width, height, container, success, error) {
 	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
 	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
 </head>
-<body onclick="SecureRandom.seedTime();" onmousemove="ninja.seeder.seed(event);">
+<!-- <body onclick="SecureRandom.seedTime();" onmousemove="ninja.seeder.seed(event);"> -->
+<body onclick="SecureRandom.seedTime();">
 	<div id="busyblock"></div>
 	<div class="headerbg"></div>
   	<div id="main">
@@ -9326,9 +9327,23 @@ function QRCodeScanner(width, height, container, success, error) {
 
 			<div id="generatedheader">
 				<img src="images/komodo-logo-vertical-03.png"><br>
-				Your Own Unique KOMODO Passphrase<br>
-				and Address Has Been Generated Below<br>
-				<input type="button" class="button" id="newaddresshero" value="Generate A New Wallet" onclick="ninja.wallets.singlewallet.generateNewAddressAndKey();" /></span>
+				<div id="generatetext">
+					Generate Your Own Unique<br>
+					KOMODO Passphrase and Address
+				</div>
+				<div id="generatedtext">
+					Your Own Unique KOMODO Passphrase<br>
+					and Address Has Been Generated Below
+				</div>
+				<input type="button" class="button" id="newaddresshero" value="Generate A New Wallet" onclick="" /></span>
+				<input type="button" class="button" id="newaddresshero1" value="Generate Another Wallet" onclick="ninja.wallets.singlewallet.generateNewAddressAndKey();" /></span>
+			</div>
+
+			<div id="generateseed">
+				<div class="progress" id="random-bar">
+					<div id="random-innertext"></div>
+				</div>
+				<div id="random-text">Move your mouse to generate a random seed</div>
 			</div>
 		</div>
 
@@ -9466,7 +9481,7 @@ function QRCodeScanner(width, height, container, success, error) {
 			</div>
 
 			<div id="singlearea" class="walletarea">
-				<div id="initBanner">
+				<!-- <div id="initBanner">
 					<span id="generatelabelbitcoinaddress" class="i18n">Generating new Address...</span><br />
 					<span id="generatelabelmovemouse" class="i18n">MOVE your mouse around to add some extra randomness... </span><span id="mousemovelimit"></span><br />
 					<span id="generatelabelkeypress" class="i18n">OR type some random characters into this textbox</span> <input type="text" id="generatekeyinput" onkeypress="ninja.seeder.seedKeyPress(event);" /><br />
@@ -9482,7 +9497,7 @@ function QRCodeScanner(width, height, container, success, error) {
 						<p id="skipMessage" class="i18n">You may skip this step if you do not plan to use the random key generator.</p>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- <div id="walletCommands" class="commands">
 					<div id="singlecommands" class="row">
 						<span><input type="button" id="newaddress" value="Generate New Address" onclick="ninja.wallets.singlewallet.generateNewAddressAndKey();" /></span>
@@ -9809,7 +9824,7 @@ function QRCodeScanner(width, height, container, success, error) {
 			<div class="mailer"><a href="mailto:hi@komodoplatform.com">hi@komodoplatform.com</a></div>
 
 			<div class="social">
-				<a href="#"><img src="./images/Slack_logo.png"></a>
+				<a href="https://t.me/KomodoPlatform_Official"><img src="./images/Telegram_logo.png"></a>
 				<a href="https://discord.gg/kS3vx9J"><img src="./images/Discord_logo.png"></a>
 				<a href="https://twitter.com/komodoplatform"><img src="./images/Twitter_logo.png"></a>
 				<a href="https://www.youtube.com/channel/UCtp7YrrEnZbW97sgPldyvKg"><img src="./images/YouTube_logo.png"></a>
@@ -9825,6 +9840,10 @@ function QRCodeScanner(width, height, container, success, error) {
 			</div>
 		</div>
 	</div>
+
+	<script src="./src/progressbar.min.js"></script>
+	<script src="./js/circular.js"></script>
+
 
 <script type="text/javascript">
 (function (window) {
@@ -10345,7 +10364,7 @@ ninja.publicKey = {
   <script type="text/javascript">
 	ninja.seeder = {
 		init: (function () {
-			document.getElementById("generatekeyinput").value = "";
+			// document.getElementById("generatekeyinput").value = "";
 		})(),
 
 		// number of mouse movements to wait for
@@ -10966,10 +10985,11 @@ ninja.wallets.singlewallet = {
 		document.getElementById("paperwalletarea").style.display = "block";
 		document.getElementById("singlearea").style.display = "block";
 		document.getElementById("faqZone").style.display = "block";
-		document.getElementById("initBanner").style.display = "none";
+		// document.getElementById("initBanner").style.display = "none";
 		document.getElementById("singlesafety").style.display = "none";
 
-		document.getElementById("newaddresshero").value = "Generate Another Wallet";
+		document.getElementById("newaddresshero").style.display = "none";
+		document.getElementById("newaddresshero1").style.display = "inline-block";
 	},
 
 	close: function () {
@@ -11734,7 +11754,7 @@ for(i = 0; i < janin.currencies.length; i++) {
 // Reset title if no currency is choosen
 if(ninja.getQueryString()["currency"] == null) {
     document.title = ninja.translator.get("defaultTitle");
-    document.getElementById("siteTitle").alt = ninja.translator.get("defaultTitle");
+    // document.getElementById("siteTitle").alt = ninja.translator.get("defaultTitle");
 }
 
 // Extract i18n
@@ -11782,8 +11802,8 @@ function cleani18n(string) {
                 .replace(/"/g, '\\"');
 }
 
-ninja.envSecurityCheck();
-ninja.browserSecurityCheck();
+// ninja.envSecurityCheck();
+// ninja.browserSecurityCheck();
 
   </script>
 </body>
