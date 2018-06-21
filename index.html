@@ -9344,7 +9344,7 @@ function QRCodeScanner(width, height, container, success, error) {
 					<div id="random-innertext"></div>
 				</div>
 				<div id="random-text">Move your mouse to generate a random seed</div>
-				<!-- <a href="#" onclick="ninja.seeder.seedCount = ninja.seeder.seedLimit; ninja.seeder.seed();">Skip</a> -->
+				<a href="#" onclick="ninja.seeder.seedCount = ninja.seeder.seedLimit; ninja.seeder.seed();">Skip</a>
 			</div>
 		</div>
 
@@ -9407,6 +9407,10 @@ function QRCodeScanner(width, height, container, success, error) {
 				<div id="paperwalletarea">
 					<h2>PAPER WALLET</h2>
 					<img src="./images/paperwallet.png" class="paperwalletpreview">
+					<div id="paperwalletqrpublic"></div>
+					<div id="paperwalletqrprivate"></div>
+					<div id="paperwalletpublic"></div>
+					<div id="paperwalletprivate"></div>
 
 					<span class="print"><img src="./images/Print_Button.jpg" onclick="window.print();" /></span>
 				</div>
@@ -9667,7 +9671,7 @@ function QRCodeScanner(width, height, container, success, error) {
 					<hr>
 					<input type="password" id="getprivkeysarea-seed" class="getprivkeysarea-seed" value="" placeholder="Enter your seed here" autocomplete="off" onfocus="this.select();">
 					<span class="default-text toUpperCase toBold">Coin</span> <select id="getprivkeysarea-select" class="getprivkeysarea-select"></select>
-					<input type="button" class="button" id="encryptedseeddecrypt" value="Get Private Keys" onclick="ninja.wallets.getprivkeys.get();">
+					<input type="button" class="button" value="Get Private Keys" onclick="ninja.wallets.getprivkeys.get();">
 					<div id="getprivkeysarea-inner-res" class="getprivkeysarea-inner-res">
 						<hr />
 						<div id="getprivkeysarea-inner-res-msg" class="getprivkeysarea-inner-res-msg"></div>
@@ -11010,9 +11014,13 @@ ninja.wallets.singlewallet = {
 			var privateKeyWif = key.getBitcoinWalletImportFormat();
 			document.getElementById("btcaddress").innerHTML = bitcoinAddress;
 			document.getElementById("btcprivwif").innerHTML = privateKeyWif;
+			document.getElementById("paperwalletpublic").innerHTML = bitcoinAddress;
+			document.getElementById("paperwalletprivate").innerHTML = privateKeyWif;
 			var keyValuePair = {
 				"qrcode_public": bitcoinAddress,
-				"qrcode_private": privateKeyWif
+				"paperwalletqrpublic": bitcoinAddress,
+				"qrcode_private": privateKeyWif,
+				"paperwalletqrprivate": privateKeyWif
 			};
 			ninja.qrCode.showQrCode(keyValuePair, 4);
 		}
@@ -11339,14 +11347,14 @@ ninja.wallets.paperwallet = {
 		var walletBackgroundUrl = "wallets/" + janin.selectedCurrency.name.toLowerCase() + ".png";
 
 		var walletHtml =
-							"<div class='coinIcoin'> <img id='coinImg' src='" + coinImgUrl + "' alt='currency_logo' /></div><div class='artwallet' id='artwallet" + i + "'>" +
-								"<img id='papersvg" + i + "' class='papersvg' src='" + walletBackgroundUrl + "' />" +
-								"<div id='qrcode_public" + i + "' class='qrcode_public'></div>" +
-								"<div id='qrcode_private" + i + "' class='qrcode_private'></div>" +
-								"<div class='btcaddress' id='btcaddress" + i + "'></div>" +
-								"<div class='" + keyelement + "' id='" + keyelement + i + "'></div>" +
-								"<div class='paperWalletText'><img class='backLogo' src='" + coinImgUrl + "' alt='currency_logo' />" + ninja.translator.get("paperwalletback") + "</div>" +
-							"</div>";
+			"<div class='coinIcoin'> <img id='coinImg' src='" + coinImgUrl + "' alt='currency_logo' /></div><div class='artwallet' id='artwallet" + i + "'>" +
+				"<img id='papersvg" + i + "' class='papersvg' src='" + walletBackgroundUrl + "' />" +
+				"<div id='qrcode_public" + i + "' class='qrcode_public'></div>" +
+				"<div id='qrcode_private" + i + "' class='qrcode_private'></div>" +
+				"<div class='btcaddress' id='btcaddress" + i + "'></div>" +
+				"<div class='" + keyelement + "' id='" + keyelement + i + "'></div>" +
+				"<div class='paperWalletText'><img class='backLogo' src='" + coinImgUrl + "' alt='currency_logo' />" + ninja.translator.get("paperwalletback") + "</div>" +
+			"</div>";
 		return walletHtml;
 	},
 

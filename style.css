@@ -1,12 +1,23 @@
 @font-face { font-family: "Montserrat"; src:url("./fonts/Montserrat/Montserrat-Regular.ttf"); }
 @font-face { font-family: "Raleway"; src:url("./fonts/Raleway/Raleway-Regular.ttf"); }
+@font-face { font-family: "SourceCodeVariable"; src:url("./fonts/SourceCodeVariable/SourceCodeVariable-Roman.ttf"); }
 
 html { height: 100%; }
 body { font-family: Montserrat, Arial; background-image: url('images/bgtile.jpg'); background-repeat: repeat; margin:0; padding:0; }
 
-input,
 textarea {
     border:none;
+    padding:10px;
+}
+
+input {
+    border:none;
+    height:35px;
+    padding:0 10px;
+}
+
+input[type="radio"] {
+    height:auto;
     padding:10px;
 }
 
@@ -20,8 +31,8 @@ select {
 .button {
     color:#2F6565;
     font-size:18px;
+    line-height:1em;
     background-color: #BCBCBC;
-    padding: 5px 20px 9px;
     cursor:pointer;
 }
 
@@ -204,6 +215,10 @@ hr { margin: 20px 0;  }
     word-break:break-all;
 }
 
+.keyarea .qrdetails .output {
+    font-family: SourceCodeVariable, monospace;
+}
+
 .keyarea #singlelabelbitcoinaddress,
 .keyarea #singlelabelprivatekey
 {
@@ -224,11 +239,67 @@ hr { margin: 20px 0;  }
     display:none;
     max-width:90%;
     margin:40px auto 20px;
+    position:relative;
+    box-sizing: border-box;
+}
+
+#paperwalletarea h2 {
+    height:31px;
 }
 
 #paperwalletarea .paperwalletpreview {
     max-width:100%;
-    margin: 20px 0;
+    width:900px;
+    margin: 20px auto;
+}
+
+#paperwalletqrpublic {
+    position: absolute;
+    top: 146px;
+    right: 251px;
+}
+
+#paperwalletqrprivate {
+    position: absolute;
+    top: 146px;
+    right: 64px;
+    height: 150px;
+    width: 150px;
+}
+
+#paperwalletqrprivate canvas {
+    height:132px!important;
+    width:132px!important;
+}
+
+#paperwalletpublic {
+    position: absolute;
+    top: 100px;
+    right: 261px;
+    transform: translate(0px, 65px) rotate(270deg);
+    width: 260px;
+    height: 100px;
+    word-wrap: break-word;
+    color: #000;
+    font-family:SourceCodeVariable, monospace;
+    font-size: 16px;
+}
+
+#paperwalletprivate {
+    position: absolute;
+    top: 100px;
+    right: -131px;
+    transform: translate(0px, 65px) rotate(270deg);
+    width: 260px;
+    height: 100px;
+    word-wrap: break-word;
+    color: #000;
+    font-family:SourceCodeVariable, monospace;
+    font-size: 15px;
+}
+
+#paperwalletarea .print {
+    cursor: pointer;
 }
 
 #singlearea { display: block; padding:30px 0;}
@@ -420,11 +491,13 @@ h1 { margin: 0px; height: 91px; }
 .qrcodeinputwrapper img { position: absolute; display: block; top: 3px; right: 20px; width: 16px; height: 16px;background: url("./images/qrcode.png"); cursor: pointer; padding: 0; }
 .qrinput .button { 
     position:relative;
-    top:5px;
+    top:6px;
     font-size:30px;
-    line-height:1em;
-    padding:2px 10px 5px;
+    line-height:15px;
+    /* padding:2px 10px 5px; */
     background-color:#FFF;
+    height:35px;
+    width:40px;
 }
 
 #bulkarea .body { padding: 5px 0 0 0; }
@@ -449,7 +522,7 @@ h1 { margin: 0px; height: 91px; }
 #detailarea .item { margin: 10px 0; position: relative; font-size: 90%; padding: 1px 0; }
 #detailarea .item.clear { clear: both; padding-top: 10px; }
 #detailarea .label { display: block; font-weight: bold; }
-#detailarea .output { display: block; font-family: monospace; font-size: 1.25em; word-wrap: break-word;}
+#detailarea .output { display: block; font-family: SourceCodeVariable, monospace;  word-wrap: break-word;}
 /* #detailarea #detailqrcodepublic { position: relative; float: left; margin: 0 10px 0 0; padding: 13px 11px 11px 11px; } */
 /* #detailarea #detailqrcodepubliccomp { position: relative; float: right; margin: 0 0 0 10px; padding: 13px 11px 11px 11px; } */
 /* #detailarea #detailqrcodeprivate { position: relative; float: left; margin: 0 10px 0 0; padding: 13px 11px 11px 11px; } */
@@ -609,30 +682,6 @@ h1 { margin: 0px; height: 91px; }
     }
 }
 
-@media print {
-    body { -webkit-print-color-adjust: exact; width: 1000px; height: 450px;}
-    #main { width: auto; }
-    #singlearea { border: 0; }
-    #singlesafety { border: 0; }
-    #paperarea .keyarea:first-child { border-top: 1px solid #BFBFBF; }
-    #paperarea .keyarea.art:first-child { border: 0; }
-    .pagebreak { height: 1px; }
-    .paper #logo { display: none; }
-    .menu, .footer, .commands, #tagline, #faqs, #culturemenu { display: none; }
-    #detailprivwif { width: 285px; word-wrap: break-word; }
-    #detailprivwifcomp { width: 310px; word-wrap: break-word; text-align: right; }
-    #detailarea .privqr .item.right { width: 310px; }
-    #detailarea .privqr .item { width: 285px; }
-    #detailarea .notes { display: none; }
-    #seedpoolarea { display: none; }
-    .faq { display: none; }
-    .banner { display: none; }
-    #currency { display: none; }
-    #paperarea .artwallet .btcaddress, #paperarea .artwallet .btcprivwif { z-index: 999; }
-    .paperWalletText { z-index: 999;}
-    .dogeTag { display: none; }
-}
-
 #siteTitle {
 	background: url("images/banner.png");
 	float: right;
@@ -665,7 +714,10 @@ h1 { margin: 0px; height: 91px; }
 	width: 668px;
 }
 #encryptedseeddecrypt {
-	margin-left: 10px;
+    margin-left: 10px;
+    width:100px;
+    position:relative;
+    top:1px;
 }
 .decryptseedarea-inner-res {
 	display: none;
@@ -707,7 +759,7 @@ h1 { margin: 0px; height: 91px; }
     color:#000;
     width:100%;
     width:calc(100% - 30px);
-    font-family:monospace;
+    font-family: SourceCodeVariable, monospace;
 }
 .generateseedarea-inner .label-padding {
 	padding: 20px;
@@ -772,4 +824,116 @@ h1 { margin: 0px; height: 91px; }
 }
 .label.small {
 	font-size: 14px;
+}
+
+@media print {
+    html {
+        margin:0;
+        padding:0;
+        height:100%;
+        width:100%;
+    }
+
+    body {
+        background:none;
+        -webkit-print-color-adjust: exact;
+        margin:0;
+        padding:0;
+        height:100%;
+        width:100%;
+    }
+
+    #busyblock,
+    .header,
+    .headerbg,
+    .keyarea,
+    #footerbg,
+    .menu, .footer, .commands, #tagline, #faqs, #culturemenu,
+    #paperwalletarea h2,
+    #paperwalletarea .print,
+    #seedpoolarea,
+    #singlesafety,
+    #faqZone {
+        display:none!important;
+        visibility:hidden!important;
+    }
+
+    .walletarea {
+        background:none;
+    }
+
+    /* #paperwalletarea {
+        -webkit-transform: rotate(-90deg); 
+        -moz-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    } */
+
+    #paperwalletarea,
+    #paperwalletarea .paperwalletpreview {
+        max-width: none;
+        margin:0;
+    }
+
+    #paperwalletarea .paperwalletpreview {
+        width:17.12cm;
+    }
+
+    #paperwalletqrpublic {
+        position: absolute;
+        top: 1.44cm;
+        left: 11.1cm;
+        height:2.5cm;
+        width:2.5cm;
+    }
+    
+    #paperwalletqrprivate {
+        position: absolute;
+        top: 1.44cm;
+        left: 14.5cm;
+        height:2.5cm;
+        width:2.5cm;
+    }
+    
+    #paperwalletqrpublic canvas,
+    #paperwalletqrprivate canvas {
+        height:2.5cm!important;
+        width:2.5cm!important;
+    }
+
+    #paperwalletpublic {
+        position: absolute;
+        top: 0.025cm;
+        left: 8.5cm;
+        width: 5cm;
+        height: 2cm;
+        font-size:12px;
+    }
+    
+    #paperwalletprivate {
+        position: absolute;
+        top: 0.025cm;
+        left: 15.9cm;
+        width: 5cm;
+        height: 2cm;
+        font-size:10px;
+    }
+
+    #main { width: 100%; }
+    #singlearea { border: 0; padding:0; }
+    #singlesafety { border: 0; }
+    #paperarea .keyarea:first-child { border-top: 1px solid #BFBFBF; }
+    #paperarea .keyarea.art:first-child { border: 0; }
+    .pagebreak { height: 1px; }
+    .paper #logo { display: none; }
+    #detailprivwif { width: 285px; word-wrap: break-word; }
+    #detailprivwifcomp { width: 310px; word-wrap: break-word; text-align: right; }
+    #detailarea .privqr .item.right { width: 310px; }
+    #detailarea .privqr .item { width: 285px; }
+    #detailarea .notes { display: none; }
+    .faq { display: none; }
+    .banner { display: none; }
+    #currency { display: none; }
+    #paperarea .artwallet .btcaddress, #paperarea .artwallet .btcprivwif { z-index: 999; }
+    .paperWalletText { z-index: 999;}
+    .dogeTag { display: none; }
 }
