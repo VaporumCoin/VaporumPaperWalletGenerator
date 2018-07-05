@@ -9652,14 +9652,15 @@ function QRCodeScanner(width, height, container, success, error) {
 
 			<div id="generateseedarea" class="walletarea">
 				<div class="generateseedarea-inner">
-					<span class="label i18n toUpperCase">Select seed type</span>
+					<span class="label i18n toUpperCase">Generate Seed</span>
 					<hr>
 					<div class="generateseedarea-seed-type">
-						<label for="seedtype1"><input type="radio" id="seedtype1" name="seedtype" value="seedtype1" onClick="ninja.wallets.generateseed.generate(256)"> Agama/BarterDEX (256-bit)</label>
+						Seed Type: Agama/BarterDEX (256-bit)
+						<!-- <label for="seedtype1"><input type="radio" id="seedtype1" name="seedtype" value="seedtype1" onClick="ninja.wallets.generateseed.generate(256)"> Agama/BarterDEX (256-bit)</label>
 						<br>
 						<label for="seedtype2"><input type="radio" id="seedtype2" name="seedtype" value="seedtype2" onClick="ninja.wallets.generateseed.generate(160)"> Waves (160-bit)</label>
 						<br>
-						<label for="seedtype3"><input type="radio" id="seedtype3" name="seedtype" value="seedtype3" onClick="ninja.wallets.generateseed.generate(128)"> NXT (128-bit)</label>
+						<label for="seedtype3"><input type="radio" id="seedtype3" name="seedtype" value="seedtype3" onClick="ninja.wallets.generateseed.generate(128)"> NXT (128-bit)</label> -->
 					</div>
 					<hr>
 					<span class="label i18n label-padding">This is your new seed. Please keep it extra secure and don't use any smart editors to store it.</span>
@@ -9832,7 +9833,7 @@ function QRCodeScanner(width, height, container, success, error) {
 		<div id="footer" class="footer">
 			<h5>Get Involved!</h5>
 
-			<div class="mailer"><a href="mailto:hi@komodoplatform.com">hi@komodoplatform.com</a></div>
+			<div class="mailer"><a href="mailto:contact@chainzilla.io">contact@chainzilla.io</a></div>
 
 			<div class="social">
 				<a href="https://t.me/KomodoPlatform_Official"><img src="./images/Telegram_logo.png"></a>
@@ -11173,17 +11174,17 @@ ninja.wallets.singlewallet = {
 				this.generate(256);
 			},
 			generate: function(bits) {
-				if (this.bits !== bits ||
-						this.isFirstRun) {
-					this.bits = bits;
-					this.isFirstRun = false;
+				// if (this.bits !== bits ||
+				// 		this.isFirstRun) {
+				// 	this.bits = bits;
+				// 	this.isFirstRun = false;
 
 					document.getElementById("generateseedarea-seed").innerHTML = agama.crypto.passphraseGenerator.generatePassPhrase(bits);
-				}
+				// }
 			},
 			close: function () {
 				document.getElementById("generateseedarea-seed").innerHTML = "";
-				document.getElementById("seedtype1").checked = "checked";
+				// document.getElementById("seedtype1").checked = "checked";
 				document.getElementById("generateseedarea").style.display = "none";
 			},
 		};
