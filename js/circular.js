@@ -5,10 +5,10 @@ var randomBar = new ProgressBar.Circle('#random-bar', {
     easing: 'easeOut',
     strokeWidth: 5,
     fill: '#2F6565',
-    text: {
-        value: '0%',
-        className: 'randombar_finished'
-    }
+    // text: {
+    //     value: '0%',
+    //     className: 'randombar_finished'
+    // }
 });
 
 var randomseeder = function(evt) {
@@ -23,7 +23,7 @@ var randomseeder = function(evt) {
         // document.removeEventListener('keypress', arguments.callee, false);
 
         ninja.seeder.seedCount++;
-        randomBar.setText('100%');
+        // randomBar.setText('100%');
         // randomBar.text.className += ' randombar_finished';
 
         document.querySelector('#generatingseed').style.opacity = 0;
@@ -58,7 +58,7 @@ var randomseeder = function(evt) {
         var randomTop = (Math.round(Math.random()) * 2 - 1) * Math.floor(Math.random() * 77);
 
         randomBar.animate(progress);
-        randomBar.setText(Math.floor(progress * 100) + '%');
+        // randomBar.setText(Math.floor(progress * 100) + '%');
 
         var element = document.createElement("div");
         element.className = 'randombar_text';
