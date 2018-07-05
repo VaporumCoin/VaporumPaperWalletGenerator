@@ -9855,7 +9855,6 @@ function QRCodeScanner(width, height, container, success, error) {
 <script src="./src/progressbar.min.js"></script>
 <script src="./js/circular.js"></script>
 
-
 <script type="text/javascript">
 (function (window) {
 	var muchIndex    = 0;
@@ -9974,7 +9973,7 @@ janin.currency = {
     useCurrency: function(index) {
         janin.selectedCurrency = janin.currencies[index];
 
-        // var coinImgUrl = "logos/" + janin.currency.name().toLowerCase() + ".png";
+		// var coinImgUrl = "logos/" + janin.currency.name().toLowerCase() + ".png";
         // document.getElementById("coinLogoImg").src = coinImgUrl;
 
         // Update title depending on currency
@@ -11104,7 +11103,10 @@ ninja.wallets.singlewallet = {
 				var htmlOut = [];
 
 				for (var key in agama.btcnetworks) {
-					htmlOut.push("<option id=\"btcnet-" + key + "\" value=\"" + key + "\">" + key + "</option>");
+					if (key !== 'grs' &&
+							key !== 'smart') {
+						htmlOut.push("<option id=\"btcnet-" + key + "\" value=\"" + key + "\">" + key + "</option>");
+					}
 				}
 				htmlOut.push("<option id=\"btcnet-all\" value=\"all\">all</option>");
 
@@ -11193,21 +11195,25 @@ ninja.wallets.singlewallet = {
 				document.getElementById("decryptseedarea").style.display = "block";
 			},
 			decode: function() {
-				var decodedSeed;
-
 				try {
-					decodedSeed = agama.crypto.cryptstr.decrypt(
-						document.getElementById("encryptedseedkey").value,
-						document.getElementById("encryptedseed").value
-					);
-				} catch (e) {}
+					agama.crypto.cryptstr.decrypt(
+							document.getElementById("encryptedseedkey").value,
+							document.getElementById("encryptedseed").value
+					)
+					.then(function(res) {
+						document.getElementById("decryptseedarea-inner-res").style.display = "block";
 
-				document.getElementById("decryptseedarea-inner-res").style.display = "block";
-
-				if (decodedSeed) {
-					document.getElementById("decryptseedarea-inner-res-msg").style.color = "inherit";
-					document.getElementById("decryptseedarea-inner-res-msg").innerHTML = "<strong>Decoded seed: </strong>" + decodedSeed;
-				} else {
+						if (res &&
+								res.string) {
+							document.getElementById("decryptseedarea-inner-res-msg").style.color = "inherit";
+							document.getElementById("decryptseedarea-inner-res-msg").innerHTML = "<strong>Decoded seed: </strong>" + res.string;
+						} else {
+							document.getElementById("decryptseedarea-inner-res-msg").style.color = "red";
+							document.getElementById("decryptseedarea-inner-res-msg").innerHTML = "<strong>Error: </strong> cannot decode, check decryption key and/or pin content are correct";
+						}
+					});
+				} catch (e) {
+					document.getElementById("decryptseedarea-inner-res").style.display = "block";
 					document.getElementById("decryptseedarea-inner-res-msg").style.color = "red";
 					document.getElementById("decryptseedarea-inner-res-msg").innerHTML = "<strong>Error: </strong> cannot decode, check decryption key and/or pin content are correct";
 				}
