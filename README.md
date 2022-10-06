@@ -1,6 +1,6 @@
-# Thank you for using the improved version of the Vaporum Paper Wallet
+# Thank you for using the Vaporum Paper Wallet
 
-One of ChainZilla's goals is to provide user friendly applications with state-of-the art interfaces. This is our representation of the Vaporum Paper Wallet Tool. 
+This wallet generator is based off ChainZilla's Komodo wallet generator and all credit goes to that team, please donate to them. This is our representation of the Vaporum Paper Wallet Tool. 
 
 ## Warning: OFFLINE USE RECOMMENDED 
 
@@ -11,7 +11,7 @@ Now Vaporum users can easy generate addresses and their corresponding private ke
 
 The Vaporum Paper Wallet project provides an all-in-one HTML document with embedded JavaScript/Css/Images. The JavaScript is readable, not minified and contains no XMLHttpRequest's (no AJAX). The benefit of this technique is you can load the JavaScript locally and trust that the JavaScript did not change after being loaded.
 
-**Are you interested in your own custom version of this paper wallet?** Contact a ChainZilla representative today at contact@chainzilla.io. 
+**Contact ChainZilla if you are interested in your own custom version of this paper wallet?** 
 
 
 Credit and Notice of Copyrights and Licenses:
