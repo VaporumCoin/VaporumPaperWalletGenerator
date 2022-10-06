@@ -5,7 +5,7 @@ One of ChainZilla's goals is to provide user friendly applications with state-of
 ## Warning: OFFLINE USE RECOMMENDED 
 
 **LOOKING FOR THE ZIP FILE TO DOWNLOAD?** 
-For Offline Use: https://github.com/ChainZilla/KomodoPaperWalletGenerator/archive/master.zip
+For Offline Use: https://github.com/VaporumCoin/VaporumPaperWalletGenerator.git
 
 Now Vaporum users can easy generate addresses and their corresponding private key can be conveniently generated in a web browser both online and offline.
 
