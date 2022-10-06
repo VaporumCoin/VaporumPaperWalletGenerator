@@ -1,15 +1,15 @@
-# Thank you for using the improved version of the Komodo Paper Wallet
+# Thank you for using the improved version of the Vaporum Paper Wallet
 
-One of ChainZilla's goals is to provide user friendly applications with state-of-the art interfaces. This is our representation of the Komodo Paper Wallet Tool. 
+One of ChainZilla's goals is to provide user friendly applications with state-of-the art interfaces. This is our representation of the Vaporum Paper Wallet Tool. 
 
 ## Warning: OFFLINE USE RECOMMENDED 
 
 **LOOKING FOR THE ZIP FILE TO DOWNLOAD?** 
 For Offline Use: https://github.com/ChainZilla/KomodoPaperWalletGenerator/archive/master.zip
 
-Now Komodo users can easy generate addresses and their corresponding private key can be conveniently generated in a web browser both online and offline.
+Now Vaporum users can easy generate addresses and their corresponding private key can be conveniently generated in a web browser both online and offline.
 
-The Komodo Paper Wallet project provides an all-in-one HTML document with embedded JavaScript/Css/Images. The JavaScript is readable, not minified and contains no XMLHttpRequest's (no AJAX). The benefit of this technique is you can load the JavaScript locally and trust that the JavaScript did not change after being loaded.
+The Vaporum Paper Wallet project provides an all-in-one HTML document with embedded JavaScript/Css/Images. The JavaScript is readable, not minified and contains no XMLHttpRequest's (no AJAX). The benefit of this technique is you can load the JavaScript locally and trust that the JavaScript did not change after being loaded.
 
 **Are you interested in your own custom version of this paper wallet?** Contact a ChainZilla representative today at contact@chainzilla.io. 
 
